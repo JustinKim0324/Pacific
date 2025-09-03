@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 활용 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+        }
+        .chapter {
+            display: none; /* Hide chapters by default */
+        }
+        .chapter.active {
+            display: block; /* Show active chapter */
+        }
+        .nav-link.active {
+            background-color: #e5e7eb;
+            color: #111827;
+            font-weight: 600;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-slate-100 border-r border-slate-200 p-6 flex-shrink-0 z-10">
+            <div class="mb-10">
+                <h1 class="text-2xl font-bold text-slate-900">AI 활용 가이드</h1>
+                <p class="text-sm text-slate-500">박종인 선생님</p>
+            </div>
+            <nav>
+                <ul class="space-y-2">
+                    <li><a href="#chapter1" class="nav-link block p-3 rounded-md transition-colors duration-200 hover:bg-slate-200">Chapter 1: AI 종류</a></li>
+                    <li><a href="#chapter2" class="nav-link block p-3 rounded-md transition-colors duration-200 hover:bg-slate-200">Chapter 2: 설치 및 최적화</a></li>
+                    <li><a href="#chapter3" class="nav-link block p-3 rounded-md transition-colors duration-200 hover:bg-slate-200">Chapter 3: 기본 사용법</a></li>
+                    <li><a href="#chapter4" class="nav-link block p-3 rounded-md transition-colors duration-200 hover:bg-slate-200">Chapter 4: 알아두면 좋을 것들</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 ml-64">
+            <div class="container mx-auto px-8 py-12 max-w-4xl">
+                <header class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-slate-900">AI 활용 가이드: 초보자를 위한 종합 안내서</h1>
+                    <p class="mt-4 text-lg text-slate-600">AI와 함께 더 스마트한 일상을 시작해보세요.</p>
+                </header>
+                
+                <!-- Chapter 1 -->
+                <div id="chapter1" class="chapter p-8 bg-white rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">Chapter 1: AI 종류별 특징 정리</h2>
+                    <p class="mb-4 text-slate-600">AI 종류가 너무 많습니다. 그래도 뭐가 뭔지 대충 느낌은 알아야겠죠?</p>
+                    
+                    <div class="space-y-4">
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">① GPT 계열</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p><strong>(챗GPT, 구글 Gemini, 일론 머스크 Grok, 클로드, 중국 딥시크 등)</strong></p>
+                                    <p class="text-slate-600">사전 지식 기반 생성형 AI로, 정보를 만들고, 생성하고, 아이디어를 창출하고, 이미지를 만드는 등 다양한 창작 활동을 수행합니다. 인터넷의 방대한 텍스트와 데이터를 미리 학습하여, 마치 세상의 모든 책을 읽은 거대한 두뇌와 같습니다. 특정 분야에 특화되기보다는, 여러 분야에 대해 두루두루 아는 '만물박사'와 같은 역할을 합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">② AI 검색엔진 (답변 엔진)</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                             <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p><strong>(퍼플렉시티 - Perplexity 등)</strong></p>
+                                    <p class="text-slate-600">기존 검색(네이버, 구글 등)이 관련 웹페이지 주소(링크) 목록을 보여주는 반면, 퍼플렉시티와 같은 답변 엔진은 사용자가 질문을 입력하면 AI가 직접 여러 웹페이지 정보를 실시간으로 분석하고 종합하여 요약된 답변을 문장 형태로 제공합니다. 어떤 웹페이지를 참고했는지 출처(소스)도 함께 명시해주어, 검색엔진과 AI 챗봇의 하이브리드 형태에 가깝습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                 <h3 class="text-xl font-semibold text-slate-800">③ 실용성 기반 AI (도구형 AI)</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p><strong>(미드저니, 뤼튼, 커서, 젠스파크 등)</strong></p>
+                                    <p class="text-slate-600">이미지 생성(미드저니), 글쓰기(뤼튼), 코딩(커서) 등 특정 작업을 전문적으로 도와주는 AI입니다. 각 분야에 최적화되어 있어 해당 분야에서는 매우 높은 품질의 결과물을 만들어내는 전문가용 도구와 같습니다.</p>
+                                    <ul class="mt-4 space-y-2 list-disc list-inside text-slate-600">
+                                        <li><strong>미드저니(Midjourney):</strong> 그림 그리는 법만 학습하여 이미지 품질이 뛰어납니다.</li>
+                                        <li><strong>뤼튼(Wrtn):</strong> 한국 스타트업이 개발하여 한국어 뉘앙스 및 문화적 맥락 이해도가 높은 글쓰기 특화 AI입니다.</li>
+                                        <li><strong>커서(Cursor):</strong> 컴퓨터 프로그래밍(코딩)에 모든 능력을 집중하여 프로그래머의 작업을 돕습니다.</li>
+                                        <li><strong>젠스파크(GenSpark):</strong> 발표 자료(PPT)나 보고서 등 업무용 문서를 만드는 데 특화되어 있습니다.</li>
+                                    </ul>
+                                     <p class="mt-6 font-bold text-emerald-800 bg-emerald-50 p-4 rounded-lg">→ 선생님, 처음에는 GPT, Gemini, Grok, 퍼플렉시티 조합 정도로 사용하시는 것을 추천드립니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chapter 2 -->
+                <div id="chapter2" class="chapter p-8 bg-white rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">Chapter 2: AI 프로그램 설치 및 배치 최적화</h2>
+                    <p class="mb-6 text-slate-600">내 일상 속, 생활 속에서 AI 사용을 편하게 할 수 있는 것이 무엇보다 중요합니다. AI를 사용할 때 편한 느낌을 받아야 하고, 필요할 때 신속하게 이용할 수 있어야 합니다.</p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4 text-slate-800">셋팅 체크리스트</h3>
+                    <ul class="list-disc list-inside space-y-3 bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <li>GPT, Gemini, Grok, 퍼플렉시티 등 가입을 위한 구글 계정 만들기</li>
+                        <li>GPT, Gemini, Grok, 퍼플렉시티 구글 아이디로 가입</li>
+                        <li>(PC) AI 페이지를 쉽게 열 수 있도록 크롬 북마크 바에 즐겨찾기 추가</li>
+                        <li>(모바일) 휴대폰에 AI 어플 각각 설치하기 (모바일은 GPT, Gemini, Grok만)</li>
+                        <li>(모바일) AI 어플 아이콘들을 휴대폰 메인 화면에 배치</li>
+                        <li>위의 항목들이 제대로 되었는지 확인 및 기본 화면 설정 (밝은/어두운 테마)</li>
+                    </ul>
+                </div>
+
+                <!-- Chapter 3 -->
+                <div id="chapter3" class="chapter p-8 bg-white rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">Chapter 3: GPT, Gemini 기본 사용법 익히기</h2>
+                    <p class="mb-8 text-slate-600">프롬프트 입력 연습을 중심으로 실제 사용 및 실습을 함께 해보면서 AI와 익숙해져 봅시다.</p>
+
+                    <div class="space-y-4">
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">1. 궁금한 점 질문하고 답변 받기</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600 mb-4">사람에게 물어보듯, 지금 당장 궁금한 것을 무엇이든 물어보세요. 처음부터 완벽한 질문을 할 필요는 없습니다. 대화를 이어가며 꼬리에 꼬리를 무는 질문이 더 효과적일 수 있습니다.</p>
+                                    <div class="bg-slate-100 p-4 rounded-lg text-slate-700">"백종원 김치찌개 레시피좀 알려줘봐"<br>"라이더들 유상종합 보험에 가입하는 이유가 뭐야? 그리고 보험료가 왜 비싼데?"</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">2. 일상 대화 나누기 (수다, 잡담, 카운셀링)</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600 mb-4">AI는 정보만 알려주는 딱딱한 기계가 아닙니다. 때로는 친구처럼 감성적인 대화도 나눌 수 있습니다.</p>
+                                     <div class="bg-slate-100 p-4 rounded-lg text-slate-700">"오늘 하루 너무 힘들었는데, 위로가 되는 말 한마디만 해줘."<br>"오늘 직장에서 동료가 나한테 이런 말을 했어. 혹시 이거 비꼬는 의미로 얘기한거야?'"</div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">3. 작문 / 글 편집 / 글 요약하기</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600 mb-4">AI는 글쓰기와 관련된 모든 작업에 뛰어난 재능을 가지고 있습니다. 새로운 글을 창작하거나, 기존 글을 다듬고, 긴 글의 핵심을 간추리는 데 활용해보세요.</p>
+                                     <div class="bg-slate-100 p-4 rounded-lg text-slate-700"><strong>작문:</strong> "사랑하는 손주에게 보낼 생일 축하 문자 메시지 좀 적어봐줄래?"<br><strong>편집:</strong> "나 어떤 회사에 자소서 내기 직전인데, 내가 작성한거 맞춤법이랑 띄어쓰기 같은 것 좀 봐줘."<br><strong>요약:</strong> "이 뉴스 기사 내용이 너무 긴데, 세 문장으로 요약해 줄 수 있어?"</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">4. 번역 및 영작하기</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600 mb-4">AI는 전 세계 다양한 언어를 번역하거나, 어색한 외국어 문장을 원어민처럼 자연스럽게 다듬어 줍니다. 텍스트를 직접 입력하거나 사진을 찍어 번역을 요청할 수도 있습니다.</p>
+                                     <div class="bg-slate-100 p-4 rounded-lg text-slate-700"><strong>번역:</strong> "트럼프가 이재명하고 정상회담 직전에 이런 트윗을 올려서 지금 난리야. 트윗 내용 번역좀 해줘"<br><strong>영작:</strong> "나는 지금 AI활용 방법에 대하여 기초적인 공부를 하고 있다. 새로운 개념을 배우고 익히려니 머리가 아프다"</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">5. 어렵고 복잡한 내용 쉽게 설명(해설) 받기</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600 mb-4">복잡한 전문 지식을 초등학생도 이해할 수 있도록 쉽게 풀어서 설명해주는 '친절한 선생님'이 될 수 있습니다. 개인적으로 가장 획기적인 기능이라 생각합니다.</p>
+                                     <div class="bg-slate-100 p-4 rounded-lg text-slate-700">"반도체 공정 중에 ‘증착’ 이라는게 있는데, 뭐하는 거야? 비유를 들어서 설명해주겠어?"<br>"일사부재리는 뭐고, 일사부재의는 뭐야? 단어가 비슷해서 햇갈리네. 이해할 수 있게 예시를 들어서 설명을 좀 해줄래?"</div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">6. 아이디어 얻기 / 추천 받기</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600 mb-4">생각이 막히거나 새로운 아이디어가 필요할 때, AI는 훌륭한 브레인스토밍 파트너가 될 수 있습니다. 창의적인 아이디어부터 실용적인 추천까지 받아보세요.</p>
+                                     <div class="bg-slate-100 p-4 rounded-lg text-slate-700">"배달음식점 창업을 해볼까 하는데 획기적인 요리 아이템 없을까? 추천 좀 해줘봐"<br>"내가 이번 달 말에 부산 여행을 가볼까 하거든. 2박 3일로. 너가 2박 3일로 괜찮은 코스 3개 정도만 짜볼래?"</div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="collapsible-container border border-slate-200 rounded-lg">
+                            <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">7. 역할(페르소나) 지정 및 상황극/시뮬레이션 대화</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600 mb-4">AI에게 특정 직업이나 성격의 '역할'을 부여하면 훨씬 더 전문적이거나 재미있는 대화를 나눌 수 있습니다. 면접 연습, 고객 응대 연습 등 다양한 상황을 미리 체험해 볼 수 있습니다.</p>
+                                     <div class="bg-slate-100 p-4 rounded-lg text-slate-700"><strong>면접 시뮬레이션:</strong> "지금부터 너는 대신증권 면접관이야. 나한테 면접 질문을 좀 해줘. 내가 대답을 하면 거기에 대해 피드백도 좀 해줘”<br><strong>역사적 인물과의 대화:</strong> "지금부터 너는 조선의 4대 임금인 세종대왕이야. 내가 몇 가지 질문을 할 테니, 세종대왕의 입장에서 대답해줘."</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chapter 4 -->
+                <div id="chapter4" class="chapter p-8 bg-white rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">Chapter 4: 알아두면 좋을 것들</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">① 모든 질문과 명령은 '프롬프트(Prompt)'라고 불러요.</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600">AI에게 원하는 대답을 잘 이끌어내기 위해서는 이 프롬프트를 어떻게 작성하느냐가 매우 중요합니다. 처음부터 완벽하게 작성하기보다, 원하는 답변을 얻을 때까지 추가 질문과 요청을 하며 대화를 이어나가는 것이 더 좋은 방법일 수 있습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">② 채팅창에서 줄 바꿈은 'Shift + Enter'</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600">채팅창에 글을 쓰다가 그냥 'Enter' 키를 누르면 메시지가 바로 전송됩니다. 줄을 바꾸고 싶을 때는 키보드의 'Shift' 키를 누른 상태에서 'Enter' 키를 함께 누르면 됩니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">③ AI 답변이 마음에 안 드는 경우</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <ul class="list-disc list-inside space-y-2 text-slate-600">
+                                        <li><strong>수정/변경 요구하기:</strong> "그 설명은 너무 어려우니 초등학생도 이해할 수 있게 다시 설명해줘."</li>
+                                        <li><strong>다른 버전으로 답변 다시 생성하기:</strong> 대부분의 AI에는 같은 질문에 대해 다른 답변을 생성하는 기능(새로고침, 다시 생성 등)이 있습니다.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">④ 대화 주제가 바뀌면 '새 채팅'을 시작하세요.</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600">각각의 채팅창은 과거 대화 내용을 모두 기억하고 그 맥락을 기반으로 다음 답변을 이어갑니다. 따라서 주제가 완전히 바뀔 때에는 '새 채팅(New Chat)' 버튼을 눌러 새로운 대화창을 여는 것이 더 정확하고 깔끔한 답변을 얻는 데 좋습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">⑤ AI는 가끔 그럴듯한 거짓말을 해요 (할루시네이션/환각 현상)</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600">AI가 사실인 것처럼 없는 정보를 지어내거나 틀린 정보를 진짜처럼 말하는 현상입니다. AI는 사실을 확인하는 '검색 엔진'이 아니라, 데이터를 바탕으로 가장 그럴듯한 단어를 조합하는 '언어 모델'이기 때문에 발생합니다. 따라서 AI의 답변을 100% 믿어서는 안 되며, 필요시 교차 검증을 해야 합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">⑥ AI가 가끔 성의없게 대답할 때가 있어요.</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600">답변이 너무 짧거나 성의 없게 느껴질 때는 AI가 내부 자원 소모를 관리하기 때문일 수 있습니다. 이럴 때는 추가 질문을 통해 '조련'을 시도해보거나, 다른 AI(Grok 등)에게 같은 질문을 던져보는 것이 좋습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-container border border-slate-200 rounded-lg">
+                             <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors duration-200 rounded-t-lg">
+                                <h3 class="text-xl font-semibold text-slate-800">⑦ AI와 대화하다 보면 스트레스를 받을 수 있어요.</h3>
+                                <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="p-4 border-t border-slate-200">
+                                    <p class="text-slate-600">할루시네이션이나 성의 없는 답변 등으로 인해 진이 빠지거나 스트레스를 받는 순간이 올 수 있습니다. 이는 지극히 당연한 현상입니다. 우리는 여전히 기계와 소통하고 있다는 점을 감안하고, 피로감을 느낄 때는 과감하게 사용을 중단하고 휴식을 취하는 것이 현명합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const chapters = document.querySelectorAll('.chapter');
+            const collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
+
+            function showChapter(targetId) {
+                chapters.forEach(chapter => {
+                    chapter.classList.toggle('active', '#' + chapter.id === targetId);
+                });
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === targetId);
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    showChapter(targetId);
+                });
+            });
+
+            collapsibleTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const content = trigger.nextElementSibling;
+                    const indicator = trigger.querySelector('.indicator');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        indicator.textContent = '+';
+                        indicator.classList.remove('rotate-45');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        indicator.textContent = '-';
+                        indicator.classList.add('rotate-45');
+                    } 
+                });
+            });
+
+            // Show the first chapter by default
+            showChapter('#chapter1');
+        });
+    </script>
+</body>
+</html>
+
