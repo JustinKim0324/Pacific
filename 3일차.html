@@ -3,245 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 활용 가이드 (3일차)</title>
+    <title>AI 활용 주요 개념 인포그래픽</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f4f8;
         }
-        .nav-link.active {
-            background-color: #e5e7eb;
-            color: #111827;
-            font-weight: 600;
-        }
-        section.feature {
+        .tab-content {
             display: none;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 0 0.75rem 0.75rem 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            height: 70vh;
+            overflow: hidden;
+            animation: fadeIn 0.5s;
         }
-        section.feature.active {
+        .tab-content.active {
             display: block;
         }
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        .tab-button.active {
+            border-bottom-color: #3b82f6; /* blue-500 */
+            color: #1e3a8a; /* blue-900 */
+            font-weight: 700;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .info-card {
+            background-color: #f8fafc; /* slate-50 */
+            border-left: 5px solid #60a5fa; /* blue-400 */
+        }
+        .step-circle {
+            background-color: #3b82f6;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4 sm:p-6 md:p-8">
 
-    <div class="flex">
-        <aside id="sidebar" class="hidden md:block fixed top-0 left-0 w-64 h-full bg-slate-100 border-r border-slate-200 transition-transform transform md:translate-x-0 -translate-x-full z-20 overflow-y-auto">
-            <div class="p-6 sticky top-0 bg-slate-100">
-                <h2 class="text-xl font-bold text-slate-900">AI 활용 가이드 (3일차)</h2>
-                <p class="text-sm text-slate-500 mt-1">주제를 선택하여 살펴보세요.</p>
-            </div>
-            <nav id="nav-menu" class="px-4 py-4">
-                 <h3 class="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">심화 활용</h3>
-                 <ul class="space-y-2">
-                    <li><a href="#feature-7" class="nav-link flex items-center px-4 py-2 text-slate-700 rounded-md hover:bg-slate-200 transition-colors">
-                        <span class="mr-3">✨</span> GEMS / GPTS</a></li>
-                    <li><a href="#feature-8" class="nav-link flex items-center px-4 py-2 text-slate-700 rounded-md hover:bg-slate-200 transition-colors">
-                        <span class="mr-3">💻</span> 코딩 맛보기</a></li>
-                    <li><a href="#feature-9" class="nav-link flex items-center px-4 py-2 text-slate-700 rounded-md hover:bg-slate-200 transition-colors">
-                        <span class="mr-3">🔌</span> API 개념 이해</a></li>
-                </ul>
-            </nav>
-        </aside>
+    <div class="w-full max-w-6xl mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-2">AI 활용 핵심 가이드</h1>
+        <p class="text-center text-slate-500 mb-8">주요 개념들을 탭하여 확인해보세요</p>
 
-        <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-30 p-2 bg-white rounded-full shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
+        <!-- Tab Buttons -->
+        <div class="flex border-b border-gray-200">
+            <button class="tab-button flex-1 py-4 px-2 text-center text-sm sm:text-lg text-slate-600 active" onclick="openTab('gems')">1. 나만의 AI 비서 만들기</button>
+            <button class="tab-button flex-1 py-4 px-2 text-center text-sm sm:text-lg text-slate-600" onclick="openTab('coding')">2. AI로 코딩 맛보기</button>
+            <button class="tab-button flex-1 py-4 px-2 text-center text-sm sm:text-lg text-slate-600" onclick="openTab('api')">3. AI 서비스의 비밀: API</button>
+        </div>
 
-        <main class="md:ml-64 w-full min-h-screen p-4 sm:p-6 lg:p-10 bg-slate-50">
-            <div class="max-w-5xl mx-auto">
-                <header class="mb-12">
-                    <h1 class="text-4xl font-bold text-slate-900">AI 심화 활용 가이드</h1>
-                    <p class="mt-4 text-lg text-slate-600">AI의 기본 기능을 넘어, 나만의 AI를 만들고, 코딩을 체험하며, AI 기술의 핵심 원리인 API까지 이해하며 AI 활용 능력을 한 단계 업그레이드해 보세요.</p>
-                </header>
-                
-                <div class="space-y-16">
-                    <section id="feature-7" class="feature p-8 bg-white rounded-2xl shadow-lg">
-                        <h2 class="text-3xl font-bold mb-6 text-slate-900">① GEMS / GPTS 활용하기</h2>
-                        <p class="text-base text-slate-600 mb-6">GEMS(Gemini)나 GPTS(ChatGPT)는 반복적인 작업을 위해 매번 긴 프롬프트 입력하는 번거로움을 해결해주는 '나만의 특화 AI' 기능입니다. 특정 역할이나 작업 형식을 미리 설정해두면, 필요할 때마다 짧은 질문만으로 일관성 있고 효율적인 결과물을 얻을 수 있습니다.</p>
-                        <div class="space-y-4">
-                            <div class="collapsible-container border border-slate-200 rounded-lg">
-                                <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors rounded-lg">
-                                    <h3 class="text-xl font-semibold text-slate-800">GEMS 만드는 절차 (Gemini)</h3>
-                                    <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
-                                </button>
-                                <div class="collapsible-content">
-                                    <ol class="list-decimal list-inside p-4 border-t border-slate-200 text-slate-600 space-y-2">
-                                        <li>왼쪽 사이드바에서 'GEMS' 메뉴 확인하기 → 'GEMS 탐색하기' 클릭</li>
-                                        <li>'+새 Gem' 클릭</li>
-                                        <li>'이름' 란에 만들고자 하는 GEMS 이름 짓기, '요청사항' 란에 지침 입력, '지식' 란에 첨부파일 업로드</li>
-                                        <li>'오른쪽 미리보기' 란을 통해 테스트 가능</li>
-                                        <li>오른쪽 상단 '저장' 버튼을 누르면 GEMS 생성 완성!</li>
-                                    </ol>
-                                </div>
-                            </div>
-                            <div class="collapsible-container border border-slate-200 rounded-lg">
-                                <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors rounded-lg">
-                                    <h3 class="text-xl font-semibold text-slate-800">GPTS 만드는 절차 (ChatGPT)</h3>
-                                    <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
-                                </button>
-                                <div class="collapsible-content">
-                                    <ol class="list-decimal list-inside p-4 border-t border-slate-200 text-slate-600 space-y-2">
-                                        <li>왼쪽 사이드 바에서 꽃잎4장 문양의 'GPT' 단어 클릭 → 오른쪽 귀퉁이 최상단 ‘+만들기’ 클릭</li>
-                                        <li>GPT 와 채팅창에서 대화를 통해 이름, 지침, 설정 등을 입력</li>
-                                        <li>필요시 기초지식을 위한 ‘첨부파일’ 첨부</li>
-                                        <li>오른쪽 화면에서 테스트 가능</li>
-                                        <li>오른쪽 상단 귀퉁이 '만들기' 버튼을 누르면 GPTS 생성 완성!</li>
-                                    </ol>
-                                </div>
-                            </div>
+        <!-- Tab Content -->
+        <div id="tab-container">
+            <!-- Tab 1: GEMS & GPTS -->
+            <div id="gems" class="tab-content active">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+                    <!-- GEMS (Gemini) -->
+                    <div class="flex flex-col p-6 bg-gray-50 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-10 h-10 text-blue-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" /></svg>
+                            <h2 class="text-2xl font-bold text-slate-800">GEMS (Gemini) 만들기</h2>
                         </div>
-                    </section>
-
-                    <section id="feature-8" class="feature p-8 bg-white rounded-2xl shadow-lg">
-                        <h2 class="text-3xl font-bold mb-6 text-slate-900">② AI로 코딩 맛보기</h2>
-                        <p class="text-base text-slate-600 mb-6">코딩을 전혀 모르는 사람도 간단한 아이디어를 직접 코드로 구현해 볼 수 있게 되었습니다. AI에게 원하는 기능을 말(프롬프트)로 설명하면, AI가 복잡한 코드를 대신 작성해줍니다. 간단한 웹페이지나 인포그래픽, 게임 등을 만들어보세요.</p>
-                        <div class="space-y-4">
-                            <div class="collapsible-container border border-slate-200 rounded-lg">
-                                <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors rounded-lg">
-                                    <h3 class="text-xl font-semibold text-slate-800">AI를 활용하여 홈페이지 만들어보기</h3>
-                                    <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
-                                </button>
-                                <div class="collapsible-content">
-                                    <div class="p-4 border-t border-slate-200 text-slate-600">
-                                        <p class="mb-4">홈페이지는 보통 뼈대를 만드는 'HTML', 디자인을 꾸미는 'CSS', 움직임을 주는 'JavaScript' 코드로 만들어집니다. 우리는 이런 언어를 몰라도 코딩 작업을 할 수 있습니다.</p>
-                                        <p class="font-semibold mb-2">기본 절차:</p>
-                                        <ol class="list-decimal list-inside space-y-1">
-                                            <li>Canvas 버튼을 누르고 프롬프트를 입력합니다.</li>
-                                            <li>AI가 코딩을 하여 홈페이지를 만듭니다.</li>
-                                            <li>완성된 코드를 메모장에 붙여넣기 합니다.</li>
-                                            <li>코드가 포함된 메모장을 .html 확장자 파일로 저장합니다.</li>
-                                            <li>웹호스팅 서비스에 연결하면 누구나 접속할 수 있는 웹페이지 완성!</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="collapsible-container border border-slate-200 rounded-lg">
-                                <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors rounded-lg">
-                                    <h3 class="text-xl font-semibold text-slate-800">AI를 활용하여 인포그래픽 만들어보기</h3>
-                                    <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
-                                </button>
-                                <div class="collapsible-content">
-                                    <div class="p-4 border-t border-slate-200 text-slate-600">
-                                        <p><strong>인포그래픽</strong>은 복잡한 정보나 데이터를 시각적인 이미지로 표현하여 쉽고 빠르게 이해할 수 있도록 만든 콘텐츠입니다. 구글 Gemini는 왼쪽 사이드바에 위치한 ‘Canvas(캔버스)’ 창의 내용을 바탕으로 인포그래픽을 자동으로 만들어주는 ‘만들기’ 버튼 기능이 있습니다.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <p class="text-slate-600 mb-4 text-sm">반복 작업을 위한 '나만의 특화 AI' 기능입니다. 짧은 질문으로 일관성 있는 결과물을 얻으세요.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start"><div class="step-circle">1</div><p class="ml-4 text-slate-700">사이드바 'GEMS' → 'GEMS 탐색하기' 클릭</p></div>
+                            <div class="flex items-start"><div class="step-circle">2</div><p class="ml-4 text-slate-700">`+새 Gem` 클릭 후 이름, 요청사항 입력</p></div>
+                            <div class="flex items-start"><div class="step-circle">3</div><p class="ml-4 text-slate-700">'지식' 란에 파일 업로드로 전문성 부여</p></div>
+                            <div class="flex items-start"><div class="step-circle">4</div><p class="ml-4 text-slate-700">미리보기로 테스트 후 '저장'하면 완성!</p></div>
                         </div>
-                    </section>
-
-                    <section id="feature-9" class="feature p-8 bg-white rounded-2xl shadow-lg">
-                        <h2 class="text-3xl font-bold mb-6 text-slate-900">③ API 개념 이해하기</h2>
-                        <div class="space-y-4">
-                             <div class="collapsible-container border border-slate-200 rounded-lg">
-                                <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors rounded-lg">
-                                    <h3 class="text-xl font-semibold text-slate-800">1. API란 무엇일까요? "프로그램 사이의 소통 규칙"</h3>
-                                    <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
-                                </button>
-                                <div class="collapsible-content">
-                                    <div class="p-4 border-t border-slate-200 text-slate-600 space-y-4">
-                                        <p>API(Application Programming Interface)는 프로그램끼리 서로 데이터를 주고받거나 기능을 사용하기 위해 미리 정해놓은 소통 방법이자 약속입니다. 모든 API는 '요청(Request)'과 '응답(Response)'이라는 두 가지 핵심 개념으로 작동합니다.</p>
-                                        <p><strong>뤼튼의 예:</strong></p>
-                                        <ol class="list-decimal list-inside space-y-1">
-                                            <li>사용자가 뤼튼 앱에 "AI에 대해 설명하는 시를 써줘" 라고 입력합니다.</li>
-                                            <li>뤼튼 프로그램은 이 내용을 OpenAI가 정해놓은 API 규칙에 맞춰 OpenAI 서버로 ‘요청’합니다.</li>
-                                            <li>OpenAI의 AI 모델이 시를 생성한 뒤, 그 결과물을 다시 뤼튼 프로그램으로 ‘응답’해 줍니다.</li>
-                                            <li>뤼튼은 전달받은 시를 앱 화면에 표시합니다.</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="collapsible-container border border-slate-200 rounded-lg">
-                                <button class="collapsible-trigger flex justify-between items-center w-full p-4 bg-slate-50 hover:bg-slate-100 transition-colors rounded-lg">
-                                    <h3 class="text-xl font-semibold text-slate-800">2. 뤼튼은 어떻게 한국어 이해도가 높을까?</h3>
-                                    <span class="indicator text-slate-500 text-2xl font-light transform transition-transform duration-300">+</span>
-                                </button>
-                                <div class="collapsible-content">
-                                    <div class="p-4 border-t border-slate-200 text-slate-600 space-y-4">
-                                        <p>뤼튼의 핵심 경쟁력은 빌려온 AI 엔진을 한국 시장에 맞게 튜닝하는 기술에 있습니다.</p>
-                                        <ul class="list-disc list-inside space-y-2">
-                                            <li><strong>파인튜닝 (Fine-tuning):</strong> OpenAI가 만든 '만물박사 AI'에게, 뤼튼이 엄선한 양질의 한국어 데이터를 추가로 집중 학습시켜 '한국어 전문가'로 만듭니다.</li>
-                                            <li><strong>검색 증강 생성 (RAG):</strong> 사용자의 질문에 답변하기 전 먼저 최신 웹 정보를 실시간으로 검색하고, 이 검색 결과를 '참고 자료'로 AI에게 함께 전달하여 더 정확하고 시의성 있는 답변을 생성하게 만듭니다.</li>
-                                            <li><strong>전략적 제휴와 모델 최적화:</strong> OpenAI의 GPT뿐만 아니라, 네이버의 '하이퍼클로바X' 와 같이 한국어에 특화된 국내 모델 API도 함께 사용하여 질문 종류에 따라 가장 적합한 AI 모델을 선택합니다.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mt-auto pt-4 info-card p-3 rounded-md">
+                            <h4 class="font-bold text-slate-700">공유 정책</h4>
+                            <p class="text-sm text-slate-600">현재는 Google이 제공하는 GEMS만 사용 가능하며, 유저간 공유는 지원되지 않습니다.</p>
                         </div>
-                    </section>
+                    </div>
+                    <!-- GPTS (ChatGPT) -->
+                    <div class="flex flex-col p-6 bg-gray-50 rounded-lg">
+                        <div class="flex items-center mb-4">
+                           <svg class="w-10 h-10 text-teal-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .81-.332c.28.02.553.038.825.054a10.438 10.438 0 0 0 3.252-.354c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A10.437 10.437 0 0 0 12 3.161c-1.108.086-2.206.208-3.293.37a2.995 2.995 0 0 0-2.707 3.228v3.01Z" /></svg>
+                            <h2 class="text-2xl font-bold text-slate-800">GPTS (ChatGPT) 만들기</h2>
+                        </div>
+                        <p class="text-slate-600 mb-4 text-sm">대화형으로 나만의 맞춤형 GPT를 만들고, 다른 사람들과 공유할 수 있는 강력한 기능입니다.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start"><div class="step-circle bg-teal-500">1</div><p class="ml-4 text-slate-700">사이드바 'GPT' → `+만들기` 클릭</p></div>
+                            <div class="flex items-start"><div class="step-circle bg-teal-500">2</div><p class="ml-4 text-slate-700">채팅 대화로 이름, 지침, 설정 등 입력</p></div>
+                            <div class="flex items-start"><div class="step-circle bg-teal-500">3</div><p class="ml-4 text-slate-700">필요 시 '첨부파일'로 기초 지식 학습</p></div>
+                            <div class="flex items-start"><div class="step-circle bg-teal-500">4</div><p class="ml-4 text-slate-700">오른쪽 화면에서 테스트 후 '만들기' 클릭</p></div>
+                        </div>
+                        <div class="mt-auto pt-4 info-card border-l-teal-400 p-3 rounded-md">
+                            <h4 class="font-bold text-slate-700">공유 정책</h4>
+                            <p class="text-sm text-slate-600">내가 만든 GPTS를 다른 사용자들에게 공유하고, 다른 사람이 만든 GPTS도 사용 가능합니다.</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <footer class="text-center mt-16 py-8 border-t border-slate-200">
-                    <p class="text-sm text-slate-500">AI 심화 활용 가이드</p>
-                </footer>
             </div>
-        </main>
+
+            <!-- Tab 2: Coding -->
+            <div id="coding" class="tab-content">
+                 <div class="flex flex-col h-full">
+                    <h2 class="text-3xl font-bold text-slate-800 text-center mb-6">AI 코딩: 아이디어를 현실로</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
+                        <div class="bg-slate-50 p-6 rounded-lg flex flex-col items-center text-center">
+                            <svg class="w-16 h-16 text-indigo-500 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                            <h3 class="text-xl font-bold mb-2">홈페이지 만들어보기</h3>
+                            <p class="text-slate-600 mb-4">HTML(뼈대), CSS(디자인), JS(동작)를 몰라도 AI에게 설명하면 웹페이지 코드를 완성해줍니다.</p>
+                            <div class="text-left space-y-2 text-sm w-full">
+                                <p class="flex items-center"><span class="font-bold text-indigo-600 mr-2">1. 프롬프트 입력:</span> '나태주 시인 홈페이지 만들어줘'</p>
+                                <p class="flex items-center"><span class="font-bold text-indigo-600 mr-2">2. 코드 생성:</span> AI가 전체 코드를 작성</p>
+                                <p class="flex items-center"><span class="font-bold text-indigo-600 mr-2">3. 파일 저장:</span> 메모장에 붙여넣고 `.html`로 저장</p>
+                                <p class="flex items-center"><span class="font-bold text-indigo-600 mr-2">4. 웹 호스팅:</span> 서비스를 이용해 전 세계에 공개!</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-lg flex flex-col items-center text-center">
+                           <svg class="w-16 h-16 text-amber-500 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" /></svg>
+                            <h3 class="text-xl font-bold mb-2">인포그래픽 만들어보기</h3>
+                            <p class="text-slate-600 mb-4">복잡한 정보(Information)와 데이터(Data)를 시각적인 그래픽(Graphic)으로 표현하는 콘텐츠입니다.</p>
+                            <div class="text-left space-y-2 text-sm w-full">
+                                <p class="flex items-center"><span class="font-bold text-amber-600 mr-2">1. 데이터 준비:</span> 시각화할 내용을 준비</p>
+                                <p class="flex items-center"><span class="font-bold text-amber-600 mr-2">2. AI 요청:</span> '만들기' 버튼 등으로 인포그래픽 생성</p>
+                                <p class="flex items-center"><span class="font-bold text-amber-600 mr-2">3. 코드 활용:</span> 생성된 코드를 `.html` 파일로 저장</p>
+                                <p class="flex items-center"><span class="font-bold text-amber-600 mr-2">4. 결과 확인:</span> 브라우저에서 시각화된 결과 확인</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 rounded-lg bg-white border border-slate-200">
+                        <h4 class="font-bold text-center text-slate-700 mb-2">💡 생각해볼 주제: AI와 개발의 미래</h4>
+                        <div class="flex justify-around text-center text-xs sm:text-sm text-slate-600">
+                            <span>#개발자 역할 변화</span>
+                            <span>#코딩의 대중화</span>
+                            <span>#코딩 교육의 전환</span>
+                            <span>#아이디어 가치 상승</span>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Tab 3: API -->
+            <div id="api" class="tab-content">
+                <div class="flex flex-col h-full">
+                    <h2 class="text-3xl font-bold text-slate-800 text-center mb-6">AI 서비스의 비밀: API와 뤼튼(Wrtn) 사례</h2>
+                    <div class="flex-grow grid grid-cols-1 md:grid-cols-5 gap-6">
+                        <!-- API 설명 -->
+                        <div class="md:col-span-2 bg-slate-50 p-6 rounded-lg flex flex-col justify-center">
+                            <h3 class="text-xl font-bold mb-2 text-center">API란? "프로그램 사이의 소통 규칙"</h3>
+                            <p class="text-center text-slate-600 mb-4">AI 모델을 직접 만들지 않아도, API를 통해 AI 기능을 '빌려와' 서비스에 포함시킬 수 있습니다.</p>
+                            <div class="space-y-4">
+                                <div class="text-center p-3 bg-blue-100 rounded">
+                                    <p class="font-bold text-blue-800">요청(Request)</p>
+                                    <p class="text-sm text-blue-700">"AI에 대해 설명하는 시를 써줘"</p>
+                                </div>
+                                <div class="flex justify-center text-gray-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3"></path></svg>
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l4-4m0 0l4 4M12 3v14"></path></svg>
+                                </div>
+                                <div class="text-center p-3 bg-green-100 rounded">
+                                    <p class="font-bold text-green-800">응답(Response)</p>
+                                    <p class="text-sm text-green-700">"차가운 논리의 숲에서, 따스한 빛을 찾는 여정..." (생성된 시)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 뤼튼 사례 -->
+                        <div class="md:col-span-3 bg-slate-50 p-6 rounded-lg flex flex-col justify-center">
+                            <h3 class="text-xl font-bold mb-3 text-center">뤼튼(Wrtn)이 한국어를 잘하는 비결</h3>
+                             <p class="text-center text-slate-600 mb-4 text-sm">단순히 API를 쓰는 것을 넘어, 빌려온 AI 엔진을 한국 시장에 맞게 '튜닝'하는 기술이 핵심입니다.</p>
+                            <div class="space-y-2">
+                                <div class="info-card border-l-rose-400 p-3 rounded-md">
+                                    <h4 class="font-bold">① 파인튜닝 (Fine-tuning)</h4>
+                                    <p class="text-sm">엄선된 한국어 데이터(신조어, 뉴스 등)를 추가 학습시켜 '한국어 전문가'로 만듭니다.</p>
+                                </div>
+                                <div class="info-card border-l-sky-400 p-3 rounded-md">
+                                    <h4 class="font-bold">② 검색 증강 생성 (RAG)</h4>
+                                    <p class="text-sm">'오픈북 시험'처럼, 답변 전 최신 웹 정보를 실시간으로 검색하여 참고합니다.</p>
+                                </div>
+                                <div class="info-card border-l-emerald-400 p-3 rounded-md">
+                                    <h4 class="font-bold">③ 전략적 제휴와 모델 최적화</h4>
+                                    <p class="text-sm">질문에 가장 적합한 AI 모델(GPT, 하이퍼클로바X 등)을 순간적으로 선택하여 사용합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section.feature');
-            const menuToggle = document.getElementById('menu-toggle');
-            const sidebar = document.getElementById('sidebar');
-            const collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
-
-            menuToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('-translate-x-full');
-            });
-            
-            function showSection(targetId) {
-                sections.forEach(section => {
-                    section.classList.toggle('active', '#' + section.id === targetId);
-                });
-                navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === targetId);
-                });
-            }
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    showSection(targetId);
-                     if (window.innerWidth < 768) {
-                        sidebar.classList.add('-translate-x-full');
-                    }
-                });
+        function openTab(tabName) {
+            // 모든 탭 컨텐츠 숨기기
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
             });
 
-            collapsibleTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    const content = trigger.nextElementSibling;
-                    const indicator = trigger.querySelector('.indicator');
-                    
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                        indicator.textContent = '+';
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        indicator.textContent = '-';
-                    } 
-                });
+            // 모든 탭 버튼 비활성화
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
             });
 
-            // Show the first feature by default if a hash is not present
-            if (!window.location.hash) {
-                showSection('#feature-7');
-            } else {
-                showSection(window.location.hash);
-            }
+            // 선택된 탭 컨텐츠 보이기
+            document.getElementById(tabName).classList.add('active');
+
+            // 선택된 탭 버튼 활성화
+            const activeButton = document.querySelector(`.tab-button[onclick="openTab('${tabName}')"]`);
+            activeButton.classList.add('active');
+        }
+
+        // 초기 탭 설정
+        document.addEventListener('DOMContentLoaded', () => {
+            openTab('gems');
         });
     </script>
+
 </body>
 </html>
-
